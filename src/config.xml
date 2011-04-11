@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" version="1.0">
+  <name>fix-mac-opera</name>
+  <description>Mac版OperaでCtrl-Hなどが二重に入力されてしまうバグを修正します。</description>
+  <author href="http://webos-goodies.jp" email="contact@webos-goodies.jp">WebOS Goodies</author>
+  <icon src="icon-64.png"/>
+</widget>
