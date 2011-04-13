@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <textarea style="width:400px; height:200px;"></textarea><br>
+  <textarea id="log" style="width:400px; height:200px;"></textarea><br>
+  <input type="button" value="Clear" onclick="document.getElementById('log').value = '';">
+  <script>
+var repeatFlags = {};
+
+function onEvent(e) {
+  var ta = document.getElementById('log');
+  ta.value = e.type + ' : keyCode=' + e.keyCode + "\n" + ta.value;
+  if(e.metaKey) {
+    if(((65 <= e.keyCode && e.keyCode <= 90) || (97 <= e.keyCode && e.keyCode <= 122))) {
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.type == 'keypress') {
+        repeatFlags[e.keyCode & 0x1f] = false;
+      }
+    } else if(e.type == 'keypress' && 1 <= e.keyCode && e.keyCode <= 26) {
+      if(repeatFlags[e.keyCode]) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      repeatFlags[e.keyCode] = !repeatFlags[e.keyCode];
+    }
+  }
+}
+document.addEventListener('keypress', onEvent, true);
+document.addEventListener('keydown', onEvent, true);
+document.addEventListener('keyup', onEvent, true);
+  </script>
+</body>
+</html>
+
